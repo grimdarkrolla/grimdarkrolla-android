@@ -1,4 +1,4 @@
-package com.grimdarkrolla.java.models;
+package com.grimdarkrolla.java.models.attackmodels;
 
 public class ShootingAttacker {
     private int numberOfModels;
