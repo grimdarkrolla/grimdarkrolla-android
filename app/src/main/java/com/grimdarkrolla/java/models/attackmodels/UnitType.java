@@ -178,7 +178,33 @@ public class UnitType {
         this.defender = defender;
     }
 
-    /**** Calculations ****/
+    /**** Tally Calculations ****/
+    // Calculates total number of defender casualties taken
+    public double totalDefenderCasualties() {
+        return Math.floor(this.totalDamageDealt() / this.defender.getWounds());
+    }
+    
+    // Calculates total damage caused to a unit type
+    public double totalDamageDealt() {
+        return this.totalNumberOfUnsavedWounds() * this.getWpnDmg();
+    }
+
+    // Calculates total number of wounds caused after saving throws
+    public double totalNumberOfUnsavedWounds() {
+        return this.totalNumberOfWounds() * this.toPercentage(bestSaveSelector());
+    }
+
+    // Calculates total number of wounds caused by the attacker prior to the defender's saves
+    public double totalNumberOfWounds() {
+        return this.totalNumberOfHits() * this.totalToWoundPercentage();
+    }
+
+    // Calculates the total number of hits (attacker hits defender)
+    public double totalNumberOfHits() {
+        return this.totalNumberOfShots() * this.totalToHitPercentage();
+    }
+
+    /**** Unit Type Calculations ****/
     // Calculates total number shots a unit has
     public int totalNumberOfShots() {
         return this.numberOfModels * this.wpnShots;
