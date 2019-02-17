@@ -261,19 +261,19 @@ public class UnitType {
         int attackerWpnStrength = this.getWpnStrength();
 
         if (attackerWpnStrength == 0) { // Shot automatically wounds
-            return (double)6/6;
+            return (double) 6/6;
         } else if (attackerWpnStrength >= (defenderToughness * 2)) {
-            return (double)5/6;
+            return (double) 5/6;
         } else if (attackerWpnStrength > defenderToughness) {
-            return (double)4/6;
+            return (double) 4/6;
         } else if (attackerWpnStrength == defenderToughness) {
-            return (double)3/6;
+            return (double) 3/6;
         } else if (attackerWpnStrength <= (defenderToughness / 2)) {
-            return (double)1/6;
+            return (double) 1/6;
         } else if (attackerWpnStrength < defenderToughness) {
-            return (double)2/6;
+            return (double) 2/6;
         } else {
-            return 0;
+            return (double) 0;
         }
     }
 
@@ -311,20 +311,20 @@ public class UnitType {
     public double toPercentage(int number) {
         switch (number) {
             case 2:
-                return (double)5/6;
+                return (double) 5/6;
             case 3:
-                return (double)4/6;
+                return (double) 4/6;
             case 4:
-                return (double)3/6;
+                return (double) 3/6;
             case 5:
-                return (double)2/6;
+                return (double) 2/6;
             case 6:
-                return (double)1/6;
+                return (double) 1/6;
 
             // In ballisticSkillToHit(), automatic hit
             // In percentageToFailSave(), no armor save
             default:
-                return 6/6;
+                return (double) 6/6;
         }
     }
 }

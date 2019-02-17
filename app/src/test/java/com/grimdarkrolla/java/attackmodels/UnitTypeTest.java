@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class UnitTypeTest {
 
-    UnitType testUnit = new UnitType();
+    private UnitType testUnit = new UnitType();
 
     @Test
     public void setUnitName_Tests() {
@@ -125,7 +125,9 @@ public class UnitTypeTest {
 
     @Test
     public void setDefender_Tests() {
+        testUnit.setUnitName("Space Marine");
         testUnit.setDefender(testUnit);
+        assertEquals("Space Marine", testUnit.getUnitName());
         assertNotNull(testUnit.getDefender());
     }
 
@@ -302,34 +304,34 @@ public class UnitTypeTest {
     @Test
     public void totalToHitPercentage_Tests() {
         testUnit.setBallisticSkill(3);
-        assertEquals((double)4/6, testUnit.totalToHitPercentage(), 0);
+        assertEquals((double) 4/6, testUnit.totalToHitPercentage(), 0);
         System.out.println("(BS %: " + testUnit.ballisticSkillToHit() + ") + (Mod %: " + testUnit.modifierToHit() + ") + (Re-roll %: " + testUnit.rerollToHit() + ") = " + testUnit.totalToHitPercentage() + " total % To Hit");
     }
 
     @Test
     public void ballisticSkillToHit_Tests() {
         testUnit.setBallisticSkill(0);
-        assertEquals((double)6/6, testUnit.ballisticSkillToHit(), 0);
+        assertEquals((double) 6/6, testUnit.ballisticSkillToHit(), 0);
         System.out.println("BS 0 = Auto-hit: " + testUnit.ballisticSkillToHit());
 
         testUnit.setBallisticSkill(2);
-        assertEquals((double)5/6, testUnit.ballisticSkillToHit(), 0);
+        assertEquals((double) 5/6, testUnit.ballisticSkillToHit(), 0);
         System.out.println("BS 2+ %: " + testUnit.ballisticSkillToHit());
 
         testUnit.setBallisticSkill(3);
-        assertEquals((double)4/6, testUnit.ballisticSkillToHit(), 0);
+        assertEquals((double) 4/6, testUnit.ballisticSkillToHit(), 0);
         System.out.println("BS 3+ %: " + testUnit.ballisticSkillToHit());
 
         testUnit.setBallisticSkill(4);
-        assertEquals((double)3/6, testUnit.ballisticSkillToHit(), 0);
+        assertEquals((double) 3/6, testUnit.ballisticSkillToHit(), 0);
         System.out.println("BS 4+ %: " + testUnit.ballisticSkillToHit());
 
         testUnit.setBallisticSkill(5);
-        assertEquals((double)2/6, testUnit.ballisticSkillToHit(), 0);
+        assertEquals((double) 2/6, testUnit.ballisticSkillToHit(), 0);
         System.out.println("BS 5+ %: " + testUnit.ballisticSkillToHit());
 
         testUnit.setBallisticSkill(6);
-        assertEquals((double)1/6, testUnit.ballisticSkillToHit(), 0);
+        assertEquals((double) 1/6, testUnit.ballisticSkillToHit(), 0);
         System.out.println("BS 6+ %: " + testUnit.ballisticSkillToHit());
     }
 
@@ -346,7 +348,7 @@ public class UnitTypeTest {
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(4);
         testUnit.setToughness(4);
-        assertEquals((double)3/6, testUnit.totalToWoundPercentage(), 0);
+        assertEquals((double) 3/6, testUnit.totalToWoundPercentage(), 0);
         System.out.println("(Base wound %: " + testUnit.baseToWound() + ") + (Mod %: " + testUnit.modifierToWound() + ") + (Re-roll %: " + testUnit.rerollToWound() + ") = " + testUnit.totalToWoundPercentage() + " total % To Wound");
     }
 
@@ -356,42 +358,42 @@ public class UnitTypeTest {
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(0);
         testUnit.setToughness(4);
-        assertEquals((double)6/6, testUnit.baseToWound(), 0);
+        assertEquals((double) 6/6, testUnit.baseToWound(), 0);
         System.out.println("Auto-wound: " + testUnit.baseToWound());
 
         // Test WpnStrength >= 2x Toughness value
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(8);
         testUnit.setToughness(4);
-        assertEquals((double)5/6, testUnit.baseToWound(), 0);
+        assertEquals((double) 5/6, testUnit.baseToWound(), 0);
         System.out.println("% WpnStrength > 2x Toughness value: " + testUnit.baseToWound());
 
         // Test WpnStrength > Toughness value, but < 2x Toughness
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(5);
         testUnit.setToughness(4);
-        assertEquals((double)4/6, testUnit.baseToWound(), 0);
+        assertEquals((double) 4/6, testUnit.baseToWound(), 0);
         System.out.println("% WpnStrength > Toughness value: " + testUnit.baseToWound());
 
         // Test WpnStrength == Toughness value
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(4);
         testUnit.setToughness(4);
-        assertEquals((double)3/6, testUnit.baseToWound(), 0);
+        assertEquals((double) 3/6, testUnit.baseToWound(), 0);
         System.out.println("% WpnStrength == Toughness value: " + testUnit.baseToWound());
 
         // Test WpnStrength < Toughness value, but > 1/2x Toughness
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(3);
         testUnit.setToughness(4);
-        assertEquals((double)2/6, testUnit.baseToWound(), 0);
+        assertEquals((double) 2/6, testUnit.baseToWound(), 0);
         System.out.println("% WpnStrength < Toughness value: " + testUnit.baseToWound());
 
         // Test WpnStrength < Toughness value
         testUnit.setDefender(testUnit);
         testUnit.setWpnStrength(2);
         testUnit.setToughness(4);
-        assertEquals((double)1/6, testUnit.baseToWound(), 0);
+        assertEquals((double) 1/6, testUnit.baseToWound(), 0);
         System.out.println("% WpnStrength <= 1/2x Toughness value: " + testUnit.baseToWound());
     }
 
@@ -408,7 +410,7 @@ public class UnitTypeTest {
         testUnit.setDefender(testUnit);
         testUnit.setArmorSave(3);
         testUnit.setInvulnSave(4);
-        assertEquals((double)2/6, testUnit.percentageToFailSave(), 0.0000000001);
+        assertEquals((double) 2/6, testUnit.percentageToFailSave(), 0.0000000001);
         System.out.println("% to fail save: " + testUnit.percentageToFailSave());
     }
 
@@ -455,27 +457,27 @@ public class UnitTypeTest {
     public void toPercentage_Test() {
         // Test default value
         testUnit.toPercentage(0);
-        assertEquals((double)6/6, testUnit.toPercentage(0),0);
+        assertEquals((double) 6/6, testUnit.toPercentage(0),0);
         System.out.println("Auto-hit / Auto-fail save: " + testUnit.toPercentage(0));
 
         testUnit.toPercentage(2);
-        assertEquals((double)5/6, testUnit.toPercentage(2),0);
+        assertEquals((double) 5/6, testUnit.toPercentage(2),0);
         System.out.println("BS 2+ / 6+ save fail %: " + testUnit.toPercentage(2));
 
         testUnit.toPercentage(3);
-        assertEquals((double)4/6, testUnit.toPercentage(3),0);
+        assertEquals((double) 4/6, testUnit.toPercentage(3),0);
         System.out.println("BS 3+ / 5+ save fail %: " + testUnit.toPercentage(3));
 
         testUnit.toPercentage(4);
-        assertEquals((double)3/6, testUnit.toPercentage(4),0);
+        assertEquals((double) 3/6, testUnit.toPercentage(4),0);
         System.out.println("BS 4+ / 4+ save fail %: " + testUnit.toPercentage(4));
 
         testUnit.toPercentage(5);
-        assertEquals((double)2/6, testUnit.toPercentage(5),0);
+        assertEquals((double) 2/6, testUnit.toPercentage(5),0);
         System.out.println("BS 5+ / 3+ save fail %: " + testUnit.toPercentage(5));
 
         testUnit.toPercentage(6);
-        assertEquals((double)1/6, testUnit.toPercentage(6),0);
+        assertEquals((double) 1/6, testUnit.toPercentage(6),0);
         System.out.println("BS 6+ / 2+ save fail %: " + testUnit.toPercentage(6));
     }
 }
