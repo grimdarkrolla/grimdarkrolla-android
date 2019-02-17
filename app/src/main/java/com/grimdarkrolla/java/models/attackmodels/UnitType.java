@@ -23,7 +23,7 @@ public class UnitType {
     private int armorSave;
     private int invulnSave;
 
-    // Morale state
+    // Morale stat
     private int leadership;
 
     // Defender unit type
@@ -59,6 +59,11 @@ public class UnitType {
         return this.numberOfModels;
     }
 
+    public int getPointCost() {
+        return pointCost;
+    }
+
+    // Shooting stat getters
     public int getWpnShots() {
         return this.wpnShots;
     }
@@ -79,10 +84,7 @@ public class UnitType {
         return this.wpnDmg;
     }
 
-    public int getPointCost() {
-        return pointCost;
-    }
-
+    // Melee stat getters
     public int getWpnSkill() {
         return wpnSkill;
     }
@@ -95,6 +97,7 @@ public class UnitType {
         return attacks;
     }
 
+    // Defense stat getters
     public int getToughness() {
         return toughness;
     }
@@ -111,10 +114,12 @@ public class UnitType {
         return invulnSave;
     }
 
+    // Morale stat getter
     public int getLeadership() {
         return leadership;
     }
 
+    // Defender unit getter
     public UnitType getDefender() {
         return defender;
     }
@@ -127,6 +132,11 @@ public class UnitType {
         this.numberOfModels = numberOfModels;
     }
 
+    public void setPointCost(int pointCost) {
+        this.pointCost = pointCost;
+    }
+
+    // Shooting stat setters
     public void setWpnShots(int wpnShots) {
         this.wpnShots = wpnShots;
     }
@@ -147,12 +157,9 @@ public class UnitType {
         this.wpnDmg = wpnDmg;
     }
 
+    // Melee stat setters
     public void setWpnSkill(int wpnSkill) {
         this.wpnSkill = wpnSkill;
-    }
-
-    public void setPointCost(int pointCost) {
-        this.pointCost = pointCost;
     }
 
     public void setStrength(int strength) {
@@ -163,6 +170,8 @@ public class UnitType {
         this.attacks = attacks;
     }
 
+
+    // Defense stat setters
     public void setToughness(int toughness) {
         this.toughness = toughness;
     }
@@ -179,10 +188,12 @@ public class UnitType {
         this.invulnSave = invulnSave;
     }
 
+    // Morale stat setter
     public void setLeadership(int leadership) {
         this.leadership = leadership;
     }
 
+    // Defender unit getter
     public void setDefender(UnitType defender) {
         this.defender = defender;
     }
