@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GrimDarkRolla</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_attacker">Attacker</string>
+    <string name="title_defender">Defender</string>
+    <string name="title_results">Results</string>
+    <string name="btnAddModel">Add New Unit</string>
 </resources>

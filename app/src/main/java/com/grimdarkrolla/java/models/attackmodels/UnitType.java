@@ -1,6 +1,7 @@
 package com.grimdarkrolla.java.models.attackmodels;
 
 public class UnitType {
+    private String unitName;
     private int numberOfModels;
     private int pointCost;
 
@@ -30,6 +31,7 @@ public class UnitType {
 
     // Public constructor
     public UnitType() {
+        this.unitName = "";
         this.numberOfModels = 1;
         this.pointCost = 0;
         this.wpnShots = 1;
@@ -44,11 +46,15 @@ public class UnitType {
         this.wounds = 1;
         this.armorSave = 0;
         this.invulnSave = 0;
-        this.defender = null;
         this.leadership = 0;
+        this.defender = null;
     }
 
     /**** Getters ****/
+    public String getUnitName() {
+        return unitName;
+    }
+
     public int getNumberOfModels() {
         return this.numberOfModels;
     }
@@ -114,6 +120,9 @@ public class UnitType {
     }
 
     /**** Setters ****/
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
     public void setNumberOfModels(int numberOfModels) {
         this.numberOfModels = numberOfModels;
     }
@@ -131,7 +140,7 @@ public class UnitType {
     }
 
     public void setWpnArmorPen(int wpnArmorPen) {
-        this.wpnArmorPen = wpnArmorPen;
+        this.wpnArmorPen = Math.abs(wpnArmorPen);
     }
 
     public void setWpnDmg(int wpnDmg) {
@@ -191,7 +200,7 @@ public class UnitType {
 
     // Calculates total number of wounds caused after saving throws
     public double totalNumberOfUnsavedWounds() {
-        return this.totalNumberOfWounds() * this.toPercentage(bestSaveSelector());
+        return this.totalNumberOfWounds() * this.percentageToFailSave();
     }
 
     // Calculates total number of wounds caused by the attacker prior to the defender's saves
@@ -238,19 +247,22 @@ public class UnitType {
     // Translates UnitType wpnStrength vs Defender toughness as a percentage to successfully wound
     public double baseToWound() {
         int defenderToughness = this.defender.getToughness();
+        int attackerWpnStrength = this.getWpnStrength();
 
-        if (this.wpnStrength >= (defenderToughness * 2)) {
-            return 5/6;
-        } else if (this.wpnStrength > defenderToughness) {
-            return 4/6;
-        } else if (this.wpnStrength == defenderToughness) {
-            return 3/6;
-        } else if (this.wpnStrength <= (defenderToughness / 2)) {
-            return 1/6;
-        } else if (this.wpnStrength < defenderToughness) {
-            return 2/6;
-        } else { // Shot automatically hits
-            return 6/6;
+        if (attackerWpnStrength == 0) { // Shot automatically wounds
+            return (double)6/6;
+        } else if (attackerWpnStrength >= (defenderToughness * 2)) {
+            return (double)5/6;
+        } else if (attackerWpnStrength > defenderToughness) {
+            return (double)4/6;
+        } else if (attackerWpnStrength == defenderToughness) {
+            return (double)3/6;
+        } else if (attackerWpnStrength <= (defenderToughness / 2)) {
+            return (double)1/6;
+        } else if (attackerWpnStrength < defenderToughness) {
+            return (double)2/6;
+        } else {
+            return 0;
         }
     }
 
@@ -266,7 +278,7 @@ public class UnitType {
 
     // Translates save value to percentage to fail the save
     public double percentageToFailSave() {
-        return toPercentage(this.bestSaveSelector());
+        return (1 - toPercentage(this.bestSaveSelector()));
     }
 
     // Compares armorSave and invulnerableSave and returns whichever is better
@@ -281,22 +293,22 @@ public class UnitType {
 
     // Calculates saves after any modifiers are applied
     public int modifiedArmorSave() {
-        return this.defender.getArmorSave() + Math.abs(this.wpnArmorPen);
+        return this.defender.getArmorSave() + this.wpnArmorPen;
     }
 
     // Translates numbers into percentages - used in ballisticSkillToHit() and percentageToFailSave()
-    private double toPercentage(int number) {
+    public double toPercentage(int number) {
         switch (number) {
             case 2:
-                return 5/6;
+                return (double)5/6;
             case 3:
-                return 4/6;
+                return (double)4/6;
             case 4:
-                return 3/6;
+                return (double)3/6;
             case 5:
-                return 2/6;
+                return (double)2/6;
             case 6:
-                return 1/6;
+                return (double)1/6;
 
             // In ballisticSkillToHit(), automatic hit
             // In percentageToFailSave(), no armor save
