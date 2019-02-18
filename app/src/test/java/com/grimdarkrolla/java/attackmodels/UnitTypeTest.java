@@ -1,8 +1,7 @@
 package com.grimdarkrolla.java.attackmodels;
 
-import com.grimdarkrolla.java.models.attackmodels.UnitType;
+import com.grimdarkrolla.java.models.UnitType;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

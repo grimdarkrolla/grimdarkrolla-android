@@ -1,4 +1,4 @@
-package com.grimdarkrolla.java.models.attackmodels;
+package com.grimdarkrolla.java.models;
 
 public class UnitType {
     private String unitName;
