@@ -3,5 +3,5 @@
     <string name="title_attacker">Attacker</string>
     <string name="title_defender">Defender</string>
     <string name="title_results">Results</string>
-    <string name="btnAddModel">Add New Unit</string>
+    <string name="btnAddAttackModel">Add New Unit</string>
 </resources>

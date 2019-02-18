@@ -1,6 +1,6 @@
 package com.grimdarkrolla.java.models;
 
-public class UnitType {
+public class ModelType {
     private String unitName;
     private int numberOfModels;
     private int pointCost;
@@ -27,10 +27,10 @@ public class UnitType {
     private int leadership;
 
     // Defender unit type
-    private UnitType defender;
+    private ModelType defender;
 
     // Public constructor
-    public UnitType() {
+    public ModelType() {
         this.unitName = "";
         this.numberOfModels = 1;
         this.pointCost = 0;
@@ -120,7 +120,7 @@ public class UnitType {
     }
 
     // Defender unit getter
-    public UnitType getDefender() {
+    public ModelType getDefender() {
         return defender;
     }
 
@@ -194,7 +194,7 @@ public class UnitType {
     }
 
     // Defender unit getter
-    public void setDefender(UnitType defender) {
+    public void setDefender(ModelType defender) {
         this.defender = defender;
     }
 
@@ -255,7 +255,7 @@ public class UnitType {
         return this.baseToWound() + this.modifierToWound() + this.rerollToWound();
     }
 
-    // Translates UnitType wpnStrength vs Defender toughness as a percentage to successfully wound
+    // Translates ModelType wpnStrength vs Defender toughness as a percentage to successfully wound
     public double baseToWound() {
         int defenderToughness = this.defender.getToughness();
         int attackerWpnStrength = this.getWpnStrength();
