@@ -1,14 +1,14 @@
-package com.grimdarkrolla.java.attackmodels;
+package com.grimdarkrolla.java;
 
-import com.grimdarkrolla.java.models.UnitType;
+import com.grimdarkrolla.java.models.ModelType;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class UnitTypeTest {
+public class ModelTypeTest {
 
-    private UnitType testUnit = new UnitType();
+    private ModelType testUnit = new ModelType();
 
     @Test
     public void setUnitName_Tests() {
