@@ -13,12 +13,12 @@
         tools:layout_editor_absoluteY="8dp">
 
         <EditText
-            android:id="@+id/attackModelUnitName"
+            android:id="@+id/unitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Model Type" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,28 +26,31 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/numberOfModels"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Models" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/wpnShots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Shots Per" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/ballisticSkill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Ballistic Skill" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,28 +59,31 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/wpnStrength"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Wpn Str" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/wpnArmorPen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Wpn AP" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/wpnDmg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Wpn Dmb" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,25 +92,25 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnDeleteModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Delete" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnDuplicateModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Duplicate" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnOptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Options" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
