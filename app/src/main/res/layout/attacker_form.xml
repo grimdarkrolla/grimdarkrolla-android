@@ -3,22 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="32dp">
 
     <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="715dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        android:background="@drawable/rounded_edge"
+        android:color="#434343" >
 
         <EditText
             android:id="@+id/unitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textAlignment="center"
             android:inputType="textPersonName"
-            android:text="Model Type" />
+            android:text="Model Type"
+            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,8 +36,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
-                android:text="Models" />
+                android:text="Models"
+                android:background="#FFFFFF" />
 
             <EditText
                 android:id="@+id/wpnShots"
@@ -40,8 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
-                android:text="Shots Per" />
+                android:text="Shots Per"
+                android:background="#FFFFFF" />
 
             <EditText
                 android:id="@+id/ballisticSkill"
@@ -49,14 +58,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
-                android:text="Ballistic Skill" />
+                android:text="Ballistic Skill"
+                android:background="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp" >
 
             <EditText
                 android:id="@+id/wpnStrength"
@@ -64,8 +76,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
-                android:text="Wpn Str" />
+                android:text="Wpn Str"
+                android:background="#FFFFFF" />
 
             <EditText
                 android:id="@+id/wpnArmorPen"
@@ -73,8 +87,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
-                android:text="Wpn AP" />
+                android:text="Wpn AP"
+                android:background="#FFFFFF" />
 
             <EditText
                 android:id="@+id/wpnDmg"
@@ -82,35 +98,45 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
-                android:text="Wpn Dmb" />
+                android:text="Wpn Dmb"
+                android:background="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/btnDeleteModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Delete" />
+                android:text="Delete"
+                android:layout_marginRight="5dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/delete_button" />
 
             <Button
                 android:id="@+id/btnDuplicateModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Duplicate" />
+                android:text="Duplicate"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/orange_button" />
 
             <Button
                 android:id="@+id/btnOptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Options" />
+                android:text="Options"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/orange_button" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.grimdarkrolla.java.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,12 +96,13 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
 
         // Injects sighting's content into the view
         holder.unitName.setText(modelType.getUnitName());
-        holder.unitName.setText(modelType.getNumberOfModels());
-        holder.unitName.setText(modelType.getWpnShots());
-        holder.unitName.setText(modelType.getBallisticSkill());
-        holder.unitName.setText(modelType.getWpnStrength());
-        holder.unitName.setText(modelType.getWpnArmorPen());
-        holder.unitName.setText(modelType.getWpnDmg());
+        holder.numberOfModels.setText("This is a test");
+        holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
+        holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
+        holder.ballisticSkill.setText(String.valueOf(modelType.getBallisticSkill()));
+        holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
+        holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
+        holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
     }
 
     // Returns the size of projects (invoked by the layout manager)
