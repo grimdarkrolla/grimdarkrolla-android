@@ -51,7 +51,7 @@ public class ModelType {
     }
 
     /**** Getters ****/
-    public String getUnitName() {
+    public String getModelName() {
         return unitName;
     }
 
@@ -125,7 +125,7 @@ public class ModelType {
     }
 
     /**** Setters ****/
-    public void setUnitName(String unitName) {
+    public void setModelName(String unitName) {
         this.unitName = unitName;
     }
     public void setNumberOfModels(int numberOfModels) {
@@ -199,6 +199,15 @@ public class ModelType {
     }
 
     /**** Tally Calculations ****/
+    // Calculates an attacking model's return on investment
+    public double totalCombatEfficiency() {
+        return this.totalDefenderCasualties() / (this.getPointCost() * this.numberOfModels);
+    }
+
+    public double modelCombatEfficiency() {
+        return this.totalDefenderCasualties() / this.getPointCost();
+    }
+
     // Calculates total number of defender casualties taken
     public double totalDefenderCasualties() {
         return Math.floor(this.totalDamageDealt() / this.defender.getWounds());
@@ -260,7 +269,7 @@ public class ModelType {
         int defenderToughness = this.defender.getToughness();
         int attackerWpnStrength = this.getWpnStrength();
 
-        if (attackerWpnStrength == 0) { // Shot automatically wounds
+        if (attackerWpnStrength == 0) { // Hit automatically wounds
             return (double) 6/6;
         } else if (attackerWpnStrength >= (defenderToughness * 2)) {
             return (double) 5/6;
@@ -321,8 +330,8 @@ public class ModelType {
             case 6:
                 return (double) 1/6;
 
-            // In ballisticSkillToHit(), automatic hit
-            // In percentageToFailSave(), no armor save
+            // In ballisticSkillToHit() = automatic hit
+            // In percentageToFailSave() = auto-fail armor save
             default:
                 return (double) 6/6;
         }
