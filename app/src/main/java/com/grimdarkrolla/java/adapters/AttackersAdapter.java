@@ -1,7 +1,6 @@
 package com.grimdarkrolla.java.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
     // Provides a reference to the views for each Project
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
-        public TextView unitName;
+        public TextView modelName;
         public TextView numberOfModels;
         public TextView wpnShots;
         public TextView ballisticSkill;
@@ -29,7 +28,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         public ViewHolder(View v) {
             super(v);
             mView = v;
-            unitName = v.findViewById(R.id.unitName);
+            modelName = v.findViewById(R.id.modelName);
             numberOfModels = v.findViewById(R.id.numberOfModels);
             wpnShots = v.findViewById(R.id.wpnShots);
             ballisticSkill = v.findViewById(R.id.ballisticSkill);
@@ -95,7 +94,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         ModelType modelType = attackModels.get(position);
 
         // Injects sighting's content into the view
-        holder.unitName.setText(modelType.getUnitName());
+        holder.modelName.setText(modelType.getModelName());
         holder.numberOfModels.setText("This is a test");
         holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
         holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));

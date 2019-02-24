@@ -1,7 +1,7 @@
 package com.grimdarkrolla.java.models;
 
 public class ModelType {
-    private String unitName;
+    private String modelName;
     private int numberOfModels;
     private int pointCost;
 
@@ -31,7 +31,7 @@ public class ModelType {
 
     // Public constructor
     public ModelType() {
-        this.unitName = "";
+        this.modelName = "";
         this.numberOfModels = 1;
         this.pointCost = 0;
         this.wpnShots = 1;
@@ -51,14 +51,12 @@ public class ModelType {
     }
 
     /**** Getters ****/
-    public String getUnitName() {
-        return unitName;
+    public String getModelName() {
+        return modelName;
     }
-
     public int getNumberOfModels() {
         return this.numberOfModels;
     }
-
     public int getPointCost() {
         return pointCost;
     }
@@ -67,19 +65,15 @@ public class ModelType {
     public int getWpnShots() {
         return this.wpnShots;
     }
-
     public int getBallisticSkill() {
         return this.ballisticSkill;
     }
-
     public int getWpnStrength() {
         return this.wpnStrength;
     }
-
     public int getWpnArmorPen() {
         return this.wpnArmorPen;
     }
-
     public int getWpnDmg() {
         return this.wpnDmg;
     }
@@ -88,11 +82,9 @@ public class ModelType {
     public int getWpnSkill() {
         return wpnSkill;
     }
-
     public int getStrength() {
         return strength;
     }
-
     public int getAttacks() {
         return attacks;
     }
@@ -101,15 +93,12 @@ public class ModelType {
     public int getToughness() {
         return toughness;
     }
-
     public int getWounds() {
         return wounds;
     }
-
     public int getArmorSave() {
         return armorSave;
     }
-
     public int getInvulnSave() {
         return invulnSave;
     }
@@ -125,13 +114,12 @@ public class ModelType {
     }
 
     /**** Setters ****/
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
+    public void setModelName(String unitName) {
+        this.modelName = unitName;
     }
     public void setNumberOfModels(int numberOfModels) {
         this.numberOfModels = numberOfModels;
     }
-
     public void setPointCost(int pointCost) {
         this.pointCost = pointCost;
     }
@@ -140,19 +128,15 @@ public class ModelType {
     public void setWpnShots(int wpnShots) {
         this.wpnShots = wpnShots;
     }
-
     public void setBallisticSkill(int ballisticSkill) {
         this.ballisticSkill = ballisticSkill;
     }
-
     public void setWpnStrength(int wpnStrength) {
         this.wpnStrength = wpnStrength;
     }
-
     public void setWpnArmorPen(int wpnArmorPen) {
         this.wpnArmorPen = Math.abs(wpnArmorPen);
     }
-
     public void setWpnDmg(int wpnDmg) {
         this.wpnDmg = wpnDmg;
     }
@@ -161,11 +145,9 @@ public class ModelType {
     public void setWpnSkill(int wpnSkill) {
         this.wpnSkill = wpnSkill;
     }
-
     public void setStrength(int strength) {
         this.strength = strength;
     }
-
     public void setAttacks(int attacks) {
         this.attacks = attacks;
     }
@@ -175,15 +157,12 @@ public class ModelType {
     public void setToughness(int toughness) {
         this.toughness = toughness;
     }
-
     public void setWounds(int wounds) {
         this.wounds = wounds;
     }
-
     public void setArmorSave(int armorSave) {
         this.armorSave = armorSave;
     }
-
     public void setInvulnSave(int invulnSave) {
         this.invulnSave = invulnSave;
     }
@@ -199,6 +178,15 @@ public class ModelType {
     }
 
     /**** Tally Calculations ****/
+    // Calculates an attacking model's return on investment
+    public double totalCombatEfficiency() {
+        return this.totalDefenderCasualties() / (this.getPointCost() * this.numberOfModels);
+    }
+
+    public double modelCombatEfficiency() {
+        return this.totalDefenderCasualties() / this.getPointCost();
+    }
+
     // Calculates total number of defender casualties taken
     public double totalDefenderCasualties() {
         return Math.floor(this.totalDamageDealt() / this.defender.getWounds());
@@ -260,7 +248,7 @@ public class ModelType {
         int defenderToughness = this.defender.getToughness();
         int attackerWpnStrength = this.getWpnStrength();
 
-        if (attackerWpnStrength == 0) { // Shot automatically wounds
+        if (attackerWpnStrength == 0) { // Hit automatically wounds
             return (double) 6/6;
         } else if (attackerWpnStrength >= (defenderToughness * 2)) {
             return (double) 5/6;
@@ -321,8 +309,8 @@ public class ModelType {
             case 6:
                 return (double) 1/6;
 
-            // In ballisticSkillToHit(), automatic hit
-            // In percentageToFailSave(), no armor save
+            // In ballisticSkillToHit() = automatic hit
+            // In percentageToFailSave() = auto-fail armor save
             default:
                 return (double) 6/6;
         }
