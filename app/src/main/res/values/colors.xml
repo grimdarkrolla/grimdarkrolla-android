@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="deleteRed">#990000</color>
     <color name="grimdarkOrange">#FF9900</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
