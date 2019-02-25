@@ -45,8 +45,8 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
 
     // Adds  an attack ModelType
     public void add(ModelType attackModel) {
-        attackModels.add(0, attackModel);
-        notifyItemInserted(0);
+        attackModels.add(attackModels.size() - 1, attackModel);
+        notifyItemInserted(attackModels.size() - 1);
     }
 
     // Removes an attack ModelType

@@ -37,6 +37,7 @@
             android:layout_weight="0.8"
             android:padding="8dp"
             android:text="@string/btnAddAttackModel"
+            android:onClick="onBtnClickAddAttackModel"
             android:textSize="20sp" />
     </LinearLayout>
 
