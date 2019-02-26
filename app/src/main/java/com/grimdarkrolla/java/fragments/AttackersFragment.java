@@ -1,5 +1,6 @@
 package com.grimdarkrolla.java.fragments;
 
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.grimdarkrolla.java.R;
 import com.grimdarkrolla.java.adapters.AttackersAdapter;
+import com.grimdarkrolla.java.database.ModelTypeDatabase;
 import com.grimdarkrolla.java.models.ModelType;
 
 import java.util.ArrayList;
@@ -18,6 +20,9 @@ import java.util.List;
 
 public class AttackersFragment extends Fragment {
     private List<ModelType> attackModels;
+    private ModelTypeDatabase modelTypeDatabase;
+
+
     private AttackersAdapter adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -31,6 +36,17 @@ public class AttackersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.attackers_view, container, false);
 
+        // Creates a singleton of the database
+        modelTypeDatabase = Room.databaseBuilder(getActivity().getApplicationContext(),
+                ModelTypeDatabase.class, "modelTypeDB")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+
+        // Gets all model types from the database
+        attackModels = modelTypeDatabase.modelTypeDao().getAll();
+
+        // Gets the recycler view
         recyclerView = view.findViewById(R.id.attackerRecyclerView);
 
         // Creates a layout manager and assigns it to the recycler view
