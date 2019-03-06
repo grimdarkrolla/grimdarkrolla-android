@@ -46,16 +46,17 @@ public class AttackersFragment extends Fragment {
         // Gets all model types from the database
         attackModels = modelTypeDatabase.modelTypeDao().getAll();
 
+        // Creates a default model if attackModels is empty
+        if (attackModels.size() == 0) {
+            attackModels.add(createAttacker());
+        }
+
         // Gets the recycler view
         recyclerView = view.findViewById(R.id.attackerRecyclerView);
 
         // Creates a layout manager and assigns it to the recycler view
         layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
-
-        // Creates a default model if attackModels is empty
-        attackModels = new ArrayList<>();
-        attackModels.add(new ModelType());
 
         // Specify an adapter (see also next example)
         adapter = new AttackersAdapter(attackModels);
@@ -78,9 +79,16 @@ public class AttackersFragment extends Fragment {
     };
 
     public void onBtnClickAddAttackModel () {
-//        attackModels.add(new ModelType());
-        adapter.add(new ModelType());
+        ModelType newAttacker = createAttacker();
+        adapter.add(newAttacker);
         Log.i("TAG", "IT WORKED");
+    }
+
+    // Adds a new attack model, with a defender, to attackModels
+    public ModelType createAttacker() {
+        ModelType newAttacker = new ModelType();
+        newAttacker.setDefender(new ModelType());
+        return newAttacker;
     }
 
 }
