@@ -15,13 +15,12 @@ import com.grimdarkrolla.java.adapters.AttackersAdapter;
 import com.grimdarkrolla.java.database.ModelTypeDatabase;
 import com.grimdarkrolla.java.models.ModelType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AttackersFragment extends Fragment {
     private List<ModelType> attackModels;
     private ModelTypeDatabase modelTypeDatabase;
-
+    private long databaseMaxValue;
 
     private AttackersAdapter adapter;
     private RecyclerView recyclerView;
@@ -43,12 +42,17 @@ public class AttackersFragment extends Fragment {
                 .fallbackToDestructiveMigration()
                 .build();
 
+        databaseMaxValue = modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase();
+        Log.i("DATABASE ID", "VALUE " + databaseMaxValue);
+
         // Gets all model types from the database
         attackModels = modelTypeDatabase.modelTypeDao().getAll();
 
         // Creates a default model if attackModels is empty
         if (attackModels.size() == 0) {
-            attackModels.add(createAttacker());
+            ModelType newAttacker = createAttacker();
+            modelTypeDatabase.modelTypeDao().insertModelType(newAttacker);
+            attackModels.add(newAttacker);
         }
 
         // Gets the recycler view
@@ -80,6 +84,8 @@ public class AttackersFragment extends Fragment {
 
     public void onBtnClickAddAttackModel () {
         ModelType newAttacker = createAttacker();
+        modelTypeDatabase.modelTypeDao().insertModelType(newAttacker);
+        Log.i("DATABASE ID", "VALUE A" + modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase());
         adapter.add(newAttacker);
         Log.i("TAG", "IT WORKED");
     }
@@ -87,6 +93,8 @@ public class AttackersFragment extends Fragment {
     // Adds a new attack model, with a defender, to attackModels
     public ModelType createAttacker() {
         ModelType newAttacker = new ModelType();
+        Log.i("DATABASE ID", "VALUE B" + modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase());
+        newAttacker.setId(modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase() + 1);
         newAttacker.setDefender(new ModelType());
         return newAttacker;
     }

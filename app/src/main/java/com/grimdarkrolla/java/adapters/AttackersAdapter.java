@@ -1,9 +1,11 @@
 package com.grimdarkrolla.java.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.grimdarkrolla.java.R;
@@ -24,6 +26,8 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         public TextView wpnStrength;
         public TextView wpnArmorPen;
         public TextView wpnDmg;
+        public TextView modelTypeId;
+        public Button deleteButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -35,6 +39,8 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             wpnStrength = v.findViewById(R.id.wpnStrength);
             wpnArmorPen = v.findViewById(R.id.wpnArmorPen);
             wpnDmg = v.findViewById(R.id.wpnDmg);
+            modelTypeId = v.findViewById(R.id.modelTypeId);
+            deleteButton = v.findViewById(R.id.btnDeleteModelUnit);
         }
     }
 
@@ -70,38 +76,43 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
     public AttackersAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.attacker_form, parent, false);
-
-        // Adds an onClick listener
-        // https://stackoverflow.com/questions/13485918/android-onclick-listener-in-a-separate-class
-//        v.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(final View view) {
-//                        TextView idView = view.findViewById(R.id.sightingId);
-//                        String id = idView.getText().toString();
-//                        Log.i("Sighting Id", id);
-//                        goToSighting(view, id);
-//                    }
-//                });
-
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
     // Replaces the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        ModelType modelType = attackModels.get(position);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final ModelType modelType = attackModels.get(position);
 
         // Injects sighting's content into the view
-        holder.modelName.setText(modelType.getModelName());
-        holder.numberOfModels.setText("This is a test");
+        if (modelType.getModelName().length() == 0) {
+            int humanReadablePosition = position + 1;
+            holder.modelName.setText("Model Type #" + humanReadablePosition);
+            Log.i("IF", "IF");
+        } else {
+            holder.modelName.setText(modelType.getModelName());
+            Log.i("ELSE", "ELSE");
+        }
         holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
         holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
         holder.ballisticSkill.setText(String.valueOf(modelType.getBallisticSkill()));
         holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
         holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
         holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
+        holder.modelTypeId.setText(String.valueOf(modelType.getId()));
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btnDeleteModelUnit:
+                        Log.i("DELETE", "DELETE " + modelType.getId());
+//                        if (attackModels.size() > 1) {
+//                            remove(attackModels.get(position));
+//                        }
+                }
+            }
+        });
     }
 
     // Returns the size of projects (invoked by the layout manager)

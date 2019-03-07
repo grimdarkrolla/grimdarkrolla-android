@@ -38,6 +38,7 @@ public class ModelType {
 
     // Public constructor
     public ModelType() {
+        this.id = 0;
         this.modelName = "";
         this.numberOfModels = 1;
         this.pointCost = 0;
@@ -58,6 +59,9 @@ public class ModelType {
     }
 
     /**** Getters ****/
+    public long getId() {
+        return this.id;
+    }
     public String getModelName() {
         return modelName;
     }
@@ -121,6 +125,9 @@ public class ModelType {
     }
 
     /**** Setters ****/
+    public void setId(long id) {
+        this.id = id;
+    }
     public void setModelName(String unitName) {
         this.modelName = unitName;
     }

@@ -14,6 +14,12 @@
         android:background="@drawable/rounded_edge"
         android:color="#434343" >
 
+        <TextView
+            android:id="@+id/modelTypeId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
         <EditText
             android:id="@+id/modelName"
             android:layout_width="match_parent"

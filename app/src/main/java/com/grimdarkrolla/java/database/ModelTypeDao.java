@@ -22,4 +22,7 @@ public interface ModelTypeDao {
 
     @Query("DELETE FROM modelType")
     public void nukeTable();
+
+    @Query("SELECT max(id) from modelType")
+    public long getMaxIdFromDatabase();
 }
