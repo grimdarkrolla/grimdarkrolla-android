@@ -101,6 +101,8 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
         holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
         holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
+
+        // OnClick for Model Type delete button
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +117,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // OnClick for Model Type duplicate button
         holder.duplicateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -2,8 +2,6 @@ package com.grimdarkrolla.java.objectcloner;
 
 import android.util.Log;
 
-import com.grimdarkrolla.java.models.ModelType;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -11,33 +9,32 @@ import java.io.ObjectOutputStream;
 
 public class ObjectCloner {
 
-    // so that nobody can accidentally create an ObjectCloner object
+    // Prevents anyone from accidentally creating an instance of ObjectCloner
     private ObjectCloner(){}
 
-    // returns a deep copy of an object
-    static public Object deepCopy(Object oldObj) throws Exception {
-        ObjectOutputStream oos = null;
-        ObjectInputStream ois = null;
+    // Returns a deep copy of an object
+    static public Object deepCopy(Object ObjectToClone) throws Exception {
+        ObjectOutputStream objectOutputStream = null;
+        ObjectInputStream objectInputStream = null;
         try {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(bos);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
 
             // Serializes and passes the object
-            oos.writeObject(oldObj);
-            oos.flush();
+            objectOutputStream.writeObject(ObjectToClone);
+            objectOutputStream.flush();
 
-            ByteArrayInputStream bin =
-                    new ByteArrayInputStream(bos.toByteArray());
-            ois = new ObjectInputStream(bin);
+            ByteArrayInputStream bin = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+            objectInputStream = new ObjectInputStream(bin);
 
             // Returns the new object
-            return ois.readObject();
+            return objectInputStream.readObject();
         } catch(Exception e) {
-            System.out.println("Exception in ObjectCloner = " + e);
+            Log.i("Error", "Exception in ObjectCloner = " + e);
             throw(e);
         } finally {
-            oos.close();
-            ois.close();
+            objectOutputStream.close();
+            objectInputStream.close();
         }
     }
 }
