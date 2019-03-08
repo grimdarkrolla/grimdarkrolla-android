@@ -26,6 +26,12 @@ public class ModelType {
     // Morale stat
     private int leadership;
 
+    // Modifiers to Hit and Wound
+    private int toHitModifier;
+    private String toHitReroll;
+    private int toWoundModifier;
+    private String toWoundReroll;
+
     // Defender unit type
     private ModelType defender;
 
@@ -47,6 +53,10 @@ public class ModelType {
         this.armorSave = 0;
         this.invulnSave = 0;
         this.leadership = 0;
+        this.toHitModifier = 0;
+        this.toHitReroll = "";
+        this.toWoundModifier = 0;
+        this.toWoundReroll = "";
         this.defender = null;
     }
 
@@ -108,6 +118,20 @@ public class ModelType {
         return leadership;
     }
 
+    // Hit and Wound Modifier getters
+    public int getToHitModifier() {
+        return toHitModifier;
+    }
+    public String getToHitReroll() {
+        return toHitReroll;
+    }
+    public int getToWoundModifier() {
+        return toWoundModifier;
+    }
+    public String getToWoundReroll() {
+        return toWoundReroll;
+    }
+
     // Defender unit getter
     public ModelType getDefender() {
         return defender;
@@ -152,7 +176,6 @@ public class ModelType {
         this.attacks = attacks;
     }
 
-
     // Defense stat setters
     public void setToughness(int toughness) {
         this.toughness = toughness;
@@ -172,6 +195,16 @@ public class ModelType {
         this.leadership = leadership;
     }
 
+    // Hit and Wound Modifier setters
+    public void setToHitModifier(int toHitModifier) { this.toHitModifier = toHitModifier; }
+    public void setToHitReroll(String toHitReroll) { this.toHitReroll = toHitReroll; }
+    public void setToWoundModifier(int toWoundModifier) {
+        this.toWoundModifier = toWoundModifier;
+    }
+    public void setToWoundReroll(String toWoundReroll) {
+        this.toWoundReroll = toWoundReroll;
+    }
+
     // Defender unit getter
     public void setDefender(ModelType defender) {
         this.defender = defender;
@@ -180,7 +213,7 @@ public class ModelType {
     /**** Tally Calculations ****/
     // Calculates an attacking model's return on investment
     public double totalCombatEfficiency() {
-        return this.totalDefenderCasualties() / (this.getPointCost() * this.numberOfModels);
+        return this.totalDefenderCasualties() / (this.getPointCost() * this.getNumberOfModels());
     }
 
     public double modelCombatEfficiency() {
@@ -189,7 +222,7 @@ public class ModelType {
 
     // Calculates total number of defender casualties taken
     public double totalDefenderCasualties() {
-        return Math.floor(this.totalDamageDealt() / this.defender.getWounds());
+        return Math.floor(this.totalDamageDealt() / this.getDefender().getWounds());
     }
     
     // Calculates total damage caused to a unit type
@@ -215,12 +248,12 @@ public class ModelType {
     /**** Unit Type Calculations ****/
     // Calculates total number shots a unit has
     public int totalNumberOfShots() {
-        return this.numberOfModels * this.wpnShots;
+        return this.getNumberOfModels() * this.getWpnShots();
     }
 
     // Calculates total to hit percentage
     public double totalToHitPercentage() {
-        return this.ballisticSkillToHit() + this.modifierToHit() + this.rerollToHit();
+        return (this.ballisticSkillToHit() + this.rerollToHit(this.getToHitReroll())) + this.modifierToHit(this.getToHitModifier());
     }
 
     // Translates the ballistic skill to its percentage to successfully hit
@@ -229,23 +262,47 @@ public class ModelType {
     }
 
     // Adjusts hit percentage based on modifiers
-    public double modifierToHit() {
-        return 0;
+    public double modifierToHit(int toHitModifier) {
+        switch (toHitModifier) {
+            case -3:
+                return (double) 3/6 * -1;
+            case -2:
+                return (double) 2/6 * -1;
+            case -1:
+                return (double) 1/6 * -1;
+            case 1:
+                return (double) 1/6;
+            case 2:
+                return (double) 2/6;
+            case 3:
+                return (double) 3/6;
+            default:
+                return 0;
+        }
     }
 
     // Adjusts hit percentage based on rerolls
-    public double rerollToHit() {
-        return 0;
+    public double rerollToHit(String diceToReroll) {
+        switch (diceToReroll) {
+            // Case 1 is used for rerolling 1's
+            case "ones":
+                return this.ballisticSkillToHit() * 1/6;
+            // Case 2 is used for rerolling all misses
+            case "all":
+                return (1 - this.ballisticSkillToHit()) * this.ballisticSkillToHit();
+            default:
+                return 0;
+        }
     }
 
     // Calculates total percentage to wound
     public double totalToWoundPercentage() {
-        return this.baseToWound() + this.modifierToWound() + this.rerollToWound();
+        return (this.baseToWound() + this.rerollToWound(this.getToWoundReroll())) + this.modifierToWound(this.getToWoundModifier());
     }
 
     // Translates ModelType wpnStrength vs Defender toughness as a percentage to successfully wound
     public double baseToWound() {
-        int defenderToughness = this.defender.getToughness();
+        int defenderToughness = this.getDefender().getToughness();
         int attackerWpnStrength = this.getWpnStrength();
 
         if (attackerWpnStrength == 0) { // Hit automatically wounds
@@ -266,14 +323,37 @@ public class ModelType {
     }
 
     // Adjusts wound percentage based on modifiers
-    public double modifierToWound() {
-        return 0;
+    public double modifierToWound(int toWoundModifier) {
+        switch (toWoundModifier) {
+            case -3:
+                return (double) 3/6 * -1;
+            case -2:
+                return (double) 2/6 * -1;
+            case -1:
+                return (double) 1/6 * -1;
+            case 1:
+                return (double) 1/6;
+            case 2:
+                return (double) 2/6;
+            case 3:
+                return (double) 3/6;
+            default:
+                return 0;
+        }
     }
 
     // Adjusts wound percentage based on rerolls
-    public double rerollToWound() {
-        return 0;
-    }
+    public double rerollToWound(String diceToReroll) {
+        switch (diceToReroll) {
+            // Case 1 is used for rerolling 1's
+            case "ones":
+                return this.baseToWound() * 1/6;
+            // Case 2 is used for rerolling all misses
+            case "all":
+                return (1 - this.baseToWound()) * this.baseToWound();
+            default:
+                return 0;
+        }    }
 
     // Translates save value to percentage to fail the save
     public double percentageToFailSave() {
@@ -283,16 +363,16 @@ public class ModelType {
     // Compares armorSave and invulnerableSave and returns whichever is better
     public int bestSaveSelector() {
         int modifiedArmorSave = this.modifiedArmorSave();
-        if (modifiedArmorSave < this.defender.getInvulnSave()) {
+        if (modifiedArmorSave < this.getDefender().getInvulnSave()) {
             return modifiedArmorSave;
         } else {
-            return this.defender.getInvulnSave();
+            return this.getDefender().getInvulnSave();
         }
     }
 
     // Calculates saves after any modifiers are applied
     public int modifiedArmorSave() {
-        return this.defender.getArmorSave() + this.wpnArmorPen;
+        return this.getDefender().getArmorSave() + this.getWpnArmorPen();
     }
 
     // Translates numbers into percentages - used in ballisticSkillToHit() and percentageToFailSave()
