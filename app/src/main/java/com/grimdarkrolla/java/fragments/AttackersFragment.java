@@ -42,6 +42,7 @@ public class AttackersFragment extends Fragment {
                 .fallbackToDestructiveMigration()
                 .build();
 
+        // Gets the highest id from the database
         databaseMaxValue = modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase();
         Log.i("DATABASE ID", "VALUE " + databaseMaxValue);
 
@@ -72,6 +73,7 @@ public class AttackersFragment extends Fragment {
         return view;
     }
 
+    // Adds a new attacker ModelType
     private final View.OnClickListener mListener = new View.OnClickListener(){
         public void onClick(View view){
             switch (view.getId()){
@@ -96,5 +98,4 @@ public class AttackersFragment extends Fragment {
         newAttacker.setDefender(new ModelType());
         return newAttacker;
     }
-
 }

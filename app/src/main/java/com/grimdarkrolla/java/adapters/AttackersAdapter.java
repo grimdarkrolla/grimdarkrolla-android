@@ -1,7 +1,6 @@
 package com.grimdarkrolla.java.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.grimdarkrolla.java.R;
 import com.grimdarkrolla.java.database.ModelTypeDatabase;
@@ -22,7 +20,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
     private ModelTypeDatabase modelTypeDatabase;
     private List<ModelType> attackModels;
 
-    // Provides a reference to the views for each Project
+    // Provides a reference to the views for each attacker
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
         public EditText modelName;
