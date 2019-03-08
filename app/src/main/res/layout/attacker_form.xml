@@ -7,25 +7,27 @@
     android:layout_marginBottom="32dp">
 
     <LinearLayout
+        android:id="@+id/wholeAttackerForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
         android:background="@drawable/rounded_edge"
-        android:color="#434343" >
+        android:color="#434343"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="8dp">
 
         <EditText
             android:id="@+id/modelName"
+            android:selectAllOnFocus="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="12"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:text="Model Type"
+            android:layout_marginBottom="10dp"
             android:background="@color/white"
-            android:textColor="@color/black"
+            android:ems="12"
+            android:inputType="text"
             android:padding="5dp"
-            android:layout_marginBottom="10dp" />
+            android:text="Model Type"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,31 +39,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/stat_input_border" >
+                android:background="@drawable/stat_input_border"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/numberOfModelsLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="#FFFFFF"
                     android:ems="10"
                     android:text="Models"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:background="#FFFFFF"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/numberOfModels"
+                    android:selectAllOnFocus="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:inputType="number"
                     android:text="Models"
                     android:textAlignment="center"
-                    android:background="@color/white"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -70,31 +73,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/stat_input_border" >
+                android:background="@drawable/stat_input_border"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/wpnShotsLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:text="Shots Per"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:background="@color/white"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/wpnShots"
+                    android:selectAllOnFocus="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:inputType="number"
                     android:text="Shots Per"
                     android:textAlignment="center"
-                    android:background="@color/white"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -103,31 +107,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/stat_input_border" >
+                android:background="@drawable/stat_input_border"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/ballisticSkillLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:text="Ballistic Skill"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:background="@color/white"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/ballisticSkill"
+                    android:selectAllOnFocus="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:inputType="number"
                     android:text="Ballistic Skill"
                     android:textAlignment="center"
-                    android:background="@color/white"
                     android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
@@ -135,39 +140,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp" >
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
             <!--Wpn Strength-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/stat_input_border" >
+                android:background="@drawable/stat_input_border"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/wpnStrengthLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:text="Wpn Str"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:background="@color/white"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/wpnStrength"
+                    android:selectAllOnFocus="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
-                    android:textAlignment="center"
                     android:inputType="number"
                     android:text="Wpn Str"
-                    android:background="@color/white"
+                    android:textAlignment="center"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -176,31 +182,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/stat_input_border" >
+                android:background="@drawable/stat_input_border"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/wpnArmorPenLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:text="Wpn AP"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:background="@color/white"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/wpnArmorPen"
+                    android:selectAllOnFocus="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
-                    android:textAlignment="center"
                     android:inputType="number"
                     android:text="Wpn AP"
-                    android:background="@color/white"
+                    android:textAlignment="center"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -209,68 +216,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/stat_input_border" >
+                android:background="@drawable/stat_input_border"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/wpnDmgLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
                     android:text="Wpn Dmg"
                     android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:background="@color/white"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/wpnDmg"
+                    android:selectAllOnFocus="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     android:ems="10"
-                    android:textAlignment="center"
                     android:inputType="number"
                     android:text="Wpn Dmg"
-                    android:background="@color/white"
+                    android:textAlignment="center"
                     android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/attackerEditButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:clickable="true"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnDeleteModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete"
                 android:layout_marginRight="5dp"
-                android:textColor="@color/white"
-                android:background="@drawable/delete_button" />
+                android:layout_weight="1"
+                android:background="@drawable/delete_button"
+                android:text="Delete"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnDuplicateModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Duplicate"
-                android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/orange_button" />
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/orange_button"
+                android:text="Duplicate" />
 
             <Button
                 android:id="@+id/btnOptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Options"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/orange_button" />
+                android:layout_weight="1"
+                android:background="@drawable/orange_button"
+                android:text="Options" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

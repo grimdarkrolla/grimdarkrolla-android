@@ -1,6 +1,15 @@
 package com.grimdarkrolla.java.models;
 
-public class ModelType {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import java.io.Serializable;
+
+@Entity
+public class ModelType implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
+
     private String modelName;
     private int numberOfModels;
     private int pointCost;
@@ -31,6 +40,7 @@ public class ModelType {
 
     // Public constructor
     public ModelType() {
+        this.id = 0;
         this.modelName = "";
         this.numberOfModels = 1;
         this.pointCost = 0;
@@ -51,6 +61,9 @@ public class ModelType {
     }
 
     /**** Getters ****/
+    public long getId() {
+        return this.id;
+    }
     public String getModelName() {
         return modelName;
     }
@@ -114,6 +127,9 @@ public class ModelType {
     }
 
     /**** Setters ****/
+    public void setId(long id) {
+        this.id = id;
+    }
     public void setModelName(String unitName) {
         this.modelName = unitName;
     }
