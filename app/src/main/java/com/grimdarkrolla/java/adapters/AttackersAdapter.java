@@ -80,7 +80,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         this.notifyDataSetChanged();
     }
 
-    // Create a new view (invoked by the layout manager)
+    // Creates a new view (invoked by the layout manager)
     @Override
     public AttackersAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -94,7 +94,8 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final ModelType modelType = attackModels.get(position);
 
-        // Injects sighting's content into the view
+        // Update attacker models when EditText fields lose focus
+        // Updates modelName
         if (modelType.getModelName().length() == 0) {
             holder.modelName.setText("Model Type");
         } else {
@@ -114,6 +115,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // Updates numberOfModels
         holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
         holder.numberOfModels.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -129,6 +131,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // Updates wpnShots
         holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
         holder.wpnShots.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -144,6 +147,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // Updates ballisticSkill
         holder.ballisticSkill.setText(String.valueOf(modelType.getBallisticSkill()));
         holder.ballisticSkill.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -159,6 +163,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // Updates wpnStrength
         holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
         holder.wpnStrength.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -174,6 +179,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // Updates wpnArmorPen
         holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
         holder.wpnArmorPen.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -189,6 +195,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             }
         });
 
+        // Updates wpnDmg
         holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
         holder.wpnDmg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -203,8 +210,6 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
                 }
             }
         });
-
-
 
         // OnClick for Model Type delete button
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
