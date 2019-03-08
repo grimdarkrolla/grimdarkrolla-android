@@ -1,17 +1,21 @@
 package com.grimdarkrolla.java.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.grimdarkrolla.java.R;
 import com.grimdarkrolla.java.database.ModelTypeDatabase;
 import com.grimdarkrolla.java.models.ModelType;
-import com.grimdarkrolla.java.objectcloner.ObjectCloner;
+import com.grimdarkrolla.java.tools.ObjectCloner;
+import com.grimdarkrolla.java.tools.TextChangedListener;
 
 import java.util.List;
 
@@ -22,13 +26,14 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
     // Provides a reference to the views for each Project
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
-        public TextView modelName;
-        public TextView numberOfModels;
-        public TextView wpnShots;
-        public TextView ballisticSkill;
-        public TextView wpnStrength;
-        public TextView wpnArmorPen;
-        public TextView wpnDmg;
+        public EditText modelName;
+        public EditText numberOfModels;
+        public EditText wpnShots;
+        public EditText ballisticSkill;
+        public EditText wpnStrength;
+        public EditText wpnArmorPen;
+        public EditText wpnDmg;
+        public LinearLayout wholeAttackerForm;
         public Button deleteButton;
         public Button duplicateButton;
 
@@ -42,6 +47,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             wpnStrength = v.findViewById(R.id.wpnStrength);
             wpnArmorPen = v.findViewById(R.id.wpnArmorPen);
             wpnDmg = v.findViewById(R.id.wpnDmg);
+            wholeAttackerForm = v.findViewById(R.id.wholeAttackerForm);
             deleteButton = v.findViewById(R.id.btnDeleteModelUnit);
             duplicateButton = v.findViewById(R.id.btnDuplicateModelUnit);
         }
@@ -86,7 +92,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
 
     // Replaces the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final ModelType modelType = attackModels.get(position);
 
         // Injects sighting's content into the view
@@ -95,7 +101,36 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         } else {
             holder.modelName.setText(modelType.getModelName());
         }
+
+        holder.modelName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.modelName.getText().toString().length() == 0) {
+                        holder.modelName.setText("Model Type");
+                    } else {
+                        modelType.setModelName(holder.modelName.getText().toString());
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
         holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
+        holder.numberOfModels.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.numberOfModels.getText().toString().length() == 0) {
+                        holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
+                    } else {
+                        modelType.setNumberOfModels(Integer.parseInt(holder.numberOfModels.getText().toString()));
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
         holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
         holder.ballisticSkill.setText(String.valueOf(modelType.getBallisticSkill()));
         holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));

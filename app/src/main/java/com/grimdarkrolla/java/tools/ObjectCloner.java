@@ -1,4 +1,4 @@
-package com.grimdarkrolla.java.objectcloner;
+package com.grimdarkrolla.java.tools;
 
 import android.util.Log;
 
