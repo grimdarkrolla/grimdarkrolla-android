@@ -15,7 +15,6 @@ import com.grimdarkrolla.java.R;
 import com.grimdarkrolla.java.database.ModelTypeDatabase;
 import com.grimdarkrolla.java.models.ModelType;
 import com.grimdarkrolla.java.tools.ObjectCloner;
-import com.grimdarkrolla.java.tools.TextChangedListener;
 
 import java.util.List;
 
@@ -68,7 +67,7 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
     // Removes an attack ModelType
     public void remove(long id) {
         for (int i = 0; i < attackModels.size(); i++) {
-            if (attackModels.get(i).getId() == id){
+            if (attackModels.get(i).getId() == id) {
                 attackModels.remove(i);
                 notifyItemRemoved(i);
             }
@@ -101,7 +100,6 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         } else {
             holder.modelName.setText(modelType.getModelName());
         }
-
         holder.modelName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -132,10 +130,81 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         });
 
         holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
+        holder.wpnShots.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.wpnShots.getText().toString().length() == 0) {
+                        holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
+                    } else {
+                        modelType.setWpnShots(Integer.parseInt(holder.wpnShots.getText().toString()));
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
         holder.ballisticSkill.setText(String.valueOf(modelType.getBallisticSkill()));
+        holder.ballisticSkill.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.ballisticSkill.getText().toString().length() == 0) {
+                        holder.ballisticSkill.setText(String.valueOf(modelType.getBallisticSkill()));
+                    } else {
+                        modelType.setBallisticSkill(Integer.parseInt(holder.ballisticSkill.getText().toString()));
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
         holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
+        holder.wpnStrength.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.wpnStrength.getText().toString().length() == 0) {
+                        holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
+                    } else {
+                        modelType.setWpnStrength(Integer.parseInt(holder.wpnStrength.getText().toString()));
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
         holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
+        holder.wpnArmorPen.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.wpnArmorPen.getText().toString().length() == 0) {
+                        holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
+                    } else {
+                        modelType.setWpnArmorPen(Integer.parseInt(holder.wpnArmorPen.getText().toString()));
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
         holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
+        holder.wpnDmg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (holder.wpnDmg.getText().toString().length() == 0) {
+                        holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
+                    } else {
+                        modelType.setWpnDmg(Integer.parseInt(holder.wpnDmg.getText().toString()));
+                        modelTypeDatabase.modelTypeDao().updateModelType(modelType);
+                    }
+                }
+            }
+        });
+
+
 
         // OnClick for Model Type delete button
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
