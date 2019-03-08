@@ -119,7 +119,7 @@ obj/
 **/.idea/sqlDataSources.xml
 **/.idea/dynamic.xml
 **/.idea/uiDesigner.xml
-**/.idea
+**/.idea*
 
 # OS-specific files
 .DS_Store
