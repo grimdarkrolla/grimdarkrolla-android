@@ -9,11 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.grimdarkrolla.java.R;
+import com.grimdarkrolla.java.database.ModelTypeDatabase;
 import com.grimdarkrolla.java.models.ModelType;
+import com.grimdarkrolla.java.objectcloner.ObjectCloner;
 
 import java.util.List;
 
 public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.ViewHolder> {
+    private ModelTypeDatabase modelTypeDatabase;
     private List<ModelType> attackModels;
 
     // Provides a reference to the views for each Project
@@ -26,8 +29,8 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         public TextView wpnStrength;
         public TextView wpnArmorPen;
         public TextView wpnDmg;
-        public TextView modelTypeId;
         public Button deleteButton;
+        public Button duplicateButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -39,26 +42,27 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
             wpnStrength = v.findViewById(R.id.wpnStrength);
             wpnArmorPen = v.findViewById(R.id.wpnArmorPen);
             wpnDmg = v.findViewById(R.id.wpnDmg);
-            modelTypeId = v.findViewById(R.id.modelTypeId);
             deleteButton = v.findViewById(R.id.btnDeleteModelUnit);
+            duplicateButton = v.findViewById(R.id.btnDuplicateModelUnit);
         }
     }
 
     // Constructor
-    public AttackersAdapter(List<ModelType> attackModels) {
+    public AttackersAdapter(ModelTypeDatabase modelTypeDatabase, List<ModelType> attackModels) {
+        this.modelTypeDatabase = modelTypeDatabase;
         this.attackModels = attackModels;
     }
 
     // Adds  an attack ModelType
     public void add(ModelType attackModel) {
-        attackModels.add(attackModels.size() - 1, attackModel);
+        attackModels.add(attackModels.size(), attackModel);
         notifyItemInserted(attackModels.size() - 1);
     }
 
     // Removes an attack ModelType
-    public void remove(ModelType attackModel) {
+    public void remove(long id) {
         for (int i = 0; i < attackModels.size(); i++) {
-            if (attackModel.equals(attackModels.get(i))){
+            if (attackModels.get(i).getId() == id){
                 attackModels.remove(i);
                 notifyItemRemoved(i);
             }
@@ -87,12 +91,9 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
 
         // Injects sighting's content into the view
         if (modelType.getModelName().length() == 0) {
-            int humanReadablePosition = position + 1;
-            holder.modelName.setText("Model Type #" + humanReadablePosition);
-            Log.i("IF", "IF");
+            holder.modelName.setText("Model Type");
         } else {
             holder.modelName.setText(modelType.getModelName());
-            Log.i("ELSE", "ELSE");
         }
         holder.numberOfModels.setText(String.valueOf(modelType.getNumberOfModels()));
         holder.wpnShots.setText(String.valueOf(modelType.getWpnShots()));
@@ -100,16 +101,34 @@ public class AttackersAdapter extends RecyclerView.Adapter<AttackersAdapter.View
         holder.wpnStrength.setText(String.valueOf(modelType.getWpnStrength()));
         holder.wpnArmorPen.setText(String.valueOf(modelType.getWpnArmorPen()));
         holder.wpnDmg.setText(String.valueOf(modelType.getWpnDmg()));
-        holder.modelTypeId.setText(String.valueOf(modelType.getId()));
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.btnDeleteModelUnit:
                         Log.i("DELETE", "DELETE " + modelType.getId());
-//                        if (attackModels.size() > 1) {
-//                            remove(attackModels.get(position));
-//                        }
+                        if (attackModels.size() > 1) {
+                            remove(modelType.getId());
+                            modelTypeDatabase.modelTypeDao().deleteById(modelType.getId());
+                        }
+                }
+            }
+        });
+
+        holder.duplicateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btnDuplicateModelUnit:
+                        try {
+                            Log.i("INSERT", "INSERT DUPLICATE OF " + modelType.getId());
+                            ModelType newModelType = (ModelType) ObjectCloner.deepCopy(modelType);
+                            newModelType.setId(modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase() + 1);
+                            modelTypeDatabase.modelTypeDao().insertModelType(newModelType);
+                            add(newModelType);
+                        } catch (Exception e) {
+                            Log.i("INSERT", "INSERT FAILED");
+                        }
                 }
             }
         });

@@ -14,12 +14,6 @@
         android:background="@drawable/rounded_edge"
         android:color="#434343" >
 
-        <TextView
-            android:id="@+id/modelTypeId"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone" />
-
         <EditText
             android:id="@+id/modelName"
             android:layout_width="match_parent"
@@ -245,38 +239,40 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/attackerEditButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:clickable="true"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnDeleteModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete"
                 android:layout_marginRight="5dp"
-                android:textColor="@color/white"
-                android:background="@drawable/delete_button" />
+                android:layout_weight="1"
+                android:background="@drawable/delete_button"
+                android:text="Delete"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnDuplicateModelUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Duplicate"
-                android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/orange_button" />
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/orange_button"
+                android:text="Duplicate" />
 
             <Button
                 android:id="@+id/btnOptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Options"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/orange_button" />
+                android:layout_weight="1"
+                android:background="@drawable/orange_button"
+                android:text="Options" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

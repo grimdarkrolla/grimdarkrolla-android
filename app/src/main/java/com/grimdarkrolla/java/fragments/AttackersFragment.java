@@ -63,7 +63,7 @@ public class AttackersFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter (see also next example)
-        adapter = new AttackersAdapter(attackModels);
+        adapter = new AttackersAdapter(modelTypeDatabase, attackModels);
         recyclerView.setAdapter(adapter);
 
         view.findViewById(R.id.btnAddAttackModel).setOnClickListener(mListener);
@@ -82,18 +82,16 @@ public class AttackersFragment extends Fragment {
         }
     };
 
+    // Adds a new attacker model unit to the adapter / recyclerview
     public void onBtnClickAddAttackModel () {
         ModelType newAttacker = createAttacker();
         modelTypeDatabase.modelTypeDao().insertModelType(newAttacker);
-        Log.i("DATABASE ID", "VALUE A" + modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase());
         adapter.add(newAttacker);
-        Log.i("TAG", "IT WORKED");
     }
 
-    // Adds a new attack model, with a defender, to attackModels
+    // Returns a new model type with a defender
     public ModelType createAttacker() {
         ModelType newAttacker = new ModelType();
-        Log.i("DATABASE ID", "VALUE B" + modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase());
         newAttacker.setId(modelTypeDatabase.modelTypeDao().getMaxIdFromDatabase() + 1);
         newAttacker.setDefender(new ModelType());
         return newAttacker;

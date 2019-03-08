@@ -17,8 +17,8 @@ public interface ModelTypeDao {
     @Query("SELECT * FROM modelType")
     List<ModelType> getAll();
 
-    @Delete
-    public void deleteModelType(ModelType modelType);
+    @Query("DELETE FROM modelType WHERE id = :id")
+    public void deleteById(long id);
 
     @Query("DELETE FROM modelType")
     public void nukeTable();

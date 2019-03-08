@@ -3,8 +3,10 @@ package com.grimdarkrolla.java.models;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class ModelType {
+public class ModelType implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public long id;
 
