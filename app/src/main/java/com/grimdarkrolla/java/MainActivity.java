@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.grimdarkrolla.java.fragments.AttackersFragment;
+import com.grimdarkrolla.java.fragments.DefendersFragment;
 
 public class MainActivity extends FragmentActivity {
     private TextView mTextMessage;
@@ -63,8 +64,8 @@ public class MainActivity extends FragmentActivity {
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_dashboard:
-//                    fragment = new DefendersFragment();
-//                    loadFragment(fragment);
+                    fragment = new DefendersFragment();
+                    loadFragment(fragment);
                     return true;
                 case R.id.navigation_notifications:
 //                    fragment = new ResultsFragment();
